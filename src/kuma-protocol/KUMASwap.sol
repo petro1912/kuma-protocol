@@ -611,15 +611,11 @@ contract KUMASwap is IKUMASwap, PausableUpgradeable, UUPSUpgradeable {
 
         uint256 minCoupon = _coupons.at(0);
 
-        for (uint256 i = 1; i < _coupons.length();) {
+        for (uint256 i = 1; i < _coupons.length(); ++i) {
             uint256 coupon = _coupons.at(i);
 
             if (coupon < minCoupon) {
                 minCoupon = coupon;
-            }
-
-            unchecked {
-                ++i;
             }
         }
 

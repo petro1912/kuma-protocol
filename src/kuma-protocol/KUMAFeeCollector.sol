@@ -162,7 +162,7 @@ contract KUMAFeeCollector is IKUMAFeeCollector, UUPSUpgradeable, Initializable {
         uint256 payeesLength = _payees.length();
 
         if (payeesLength > 0) {
-            for (uint256 i = payeesLength; i > 0; i--) {
+            for (uint256 i = payeesLength; i > 0; --i) {
                 address payee = _payees.at(i - 1);
                 _payees.remove(payee);
                 delete _shares[payee];
@@ -205,7 +205,7 @@ contract KUMAFeeCollector is IKUMAFeeCollector, UUPSUpgradeable, Initializable {
     function _release(IERC20 KIBToken, uint256 availableIncome) private {
         uint256 totalShares = _totalShares;
 
-        for (uint256 i; i < _payees.length(); i++) {
+        for (uint256 i; i < _payees.length(); ++i) {
             address payee = _payees.at(i);
             KIBToken.safeTransfer(payee, availableIncome * _shares[payee] / totalShares);
         }
