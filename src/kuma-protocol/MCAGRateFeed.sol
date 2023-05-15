@@ -25,7 +25,9 @@ contract MCAGRateFeed is IMCAGRateFeed, UUPSUpgradeable, Initializable {
         _;
     }
 
-    constructor() initializer {}
+    constructor() initializer {
+        _disableInitializers();
+    }
 
     /**
      * @param accessController KUMA DAO AccessController.

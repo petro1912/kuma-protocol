@@ -36,7 +36,9 @@ contract KUMAAddressProvider is IKUMAAddressProvider, UUPSUpgradeable, Initializ
         _;
     }
 
-    constructor() initializer {}
+    constructor() initializer {
+        _disableInitializers();
+    }
 
     function initialize(IAccessControl accessController) external override initializer {
         if (address(accessController) == address(0)) {
